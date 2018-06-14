@@ -38,7 +38,7 @@ $(function() {
                 expect(allFeeds[i].url).not.toBe(0);
             }
 
-         });
+        });
 
         /* TODO: Write a test that loops through each feed
          * in the allFeeds object and ensures it has a name defined
@@ -50,25 +50,36 @@ $(function() {
                 expect(allFeeds[i].name).toBeDefined();
                 expect(allFeeds[i].name).not.toBe(0);
             }
-
-         });
-
-
+        });
     });
 
     /* TODO: Write a new test suite named "The menu" */
+         describe('The menu', function() {
 
         /* TODO: Write a test that ensures the menu element is
          * hidden by default. You'll have to analyze the HTML and
          * the CSS to determine how we're performing the
          * hiding/showing of the menu element.
          */
+         it('is hiding',function(){
+
+            expect(document.querySelector("body").classList.contains("menu-hidden")).toBe(true);
+            expect(window.getComputedStyle(document.querySelector(".slide-menu")).transform.length).not.toBe(0);  
+            expect(document.querySelector(".slide-menu").getBoundingClientRect().left<0).toBe(true);
+         })
 
          /* TODO: Write a test that ensures the menu changes
           * visibility when the menu icon is clicked. This test
           * should have two expectations: does the menu display when
           * clicked and does it hide when clicked again.
           */
+        it('the menu changes on click', function(){
+            document.querySelector('.menu-icon-link').click();
+            expect(document.querySelector("body").classList).not.toContain('menu-hidden');
+            document.querySelector('.menu-icon-link').click();
+            expect(document.querySelector("body").classList).toContain('menu-hidden');
+        })
+       
 
     /* TODO: Write a new test suite named "Initial Entries" */
 
@@ -85,4 +96,6 @@ $(function() {
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.
          */
+});
 }());
+
